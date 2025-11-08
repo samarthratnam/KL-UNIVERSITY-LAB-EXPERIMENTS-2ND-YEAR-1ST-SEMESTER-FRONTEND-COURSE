@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweet Treats Bakery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <h1>Sweet Treats Bakery</h1>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="slideshow">
+    <div class="slides fade">
+      <img src="C:\KL University\2-1\FE\exp4\1.jpeg" alt="Cake 1">
+    </div>
+    <div class="slides fade">
+      <img src="C:\KL University\2-1\FE\exp4\2.jpeg" alt="Cake 2">
+    </div>
+    <div class="slides fade">
+      <img src="C:\KL University\2-1\FE\exp4\3.jpeg" alt="Cake 3">
+    </div>
+  </section>
+
+  <section id="menu">
+    <h2>Our Specialties</h2>
+    <p>Freshly baked cakes, pastries, and breads made with love daily!</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Sweet Treats Bakery | Designed by Samarth</p>
+  </footer>
+
+  <script>
+    // Simple Slideshow Logic
+    let slideIndex = 0;
+    showSlides();
+    function showSlides() {
+      let slides = document.getElementsByClassName("slides");
+      for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1 }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 2500); // Change every 2.5 seconds
+    }
+  </script>
+</body>
+</html>

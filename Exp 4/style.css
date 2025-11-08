@@ -1,0 +1,111 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff8f0;
+}
+
+/* Header and Navigation */
+nav {
+  background-color: #d35400;
+  color: white;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+nav h1 {
+  margin: 0;
+}
+
+/* Add space so content isn’t hidden behind navbar */
+header {
+  margin-bottom: 80px;
+}
+
+/* Slideshow Section */
+#slideshow {
+  position: relative;
+  max-width: 800px;
+  margin: 100px auto 20px;
+}
+
+.slides img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Fade animation */
+.fade {
+  animation: fadeEffect 2s;
+}
+
+@keyframes fadeEffect {
+  from {opacity: 0.3;}
+  to {opacity: 1;}
+}
+
+/* Menu Section */
+#menu {
+  text-align: center;
+  padding: 2rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #d35400;
+  color: white;
+  margin-top: 2rem;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #slideshow {
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  nav ul li a {
+    font-size: 0.9rem;
+  }
+
+  #menu h2 {
+    font-size: 1.2rem;
+  }
+}
