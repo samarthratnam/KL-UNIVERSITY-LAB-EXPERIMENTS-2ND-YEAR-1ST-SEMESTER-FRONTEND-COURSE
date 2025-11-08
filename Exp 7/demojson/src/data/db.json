@@ -1,0 +1,28 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "White Nights",
+      "author": "Fyodor Dostoevsky",
+      "year": 1848
+    },
+    {
+      "id": "2",
+      "title": "Myth of Sisyphus",
+      "author": "Albert Camus",
+      "year": 1942
+    },
+    {
+      "id": "3",
+      "title": "12 Rules for Life",
+      "author": "Jordan B. Peterson",
+      "year": 2018
+    },
+    {
+      "id": "a6d3",
+      "title": "Thus Spoke Zarathustra",
+      "author": "Friedrich Nietzsche",
+      "year": "1883"
+    }
+  ]
+}
