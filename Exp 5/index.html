@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form Validation</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      transition: border 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #5b9bd5;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    .success {
+      color: green;
+      font-size: 12px;
+      margin-bottom: 10px;
+      display: none;
+    }
+
+    .valid {
+      border-color: green;
+      background-color: #e6ffe6;
+    }
+
+    .invalid {
+      border-color: red;
+      background-color: #ffe6e6;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #5b9bd5;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #4a89c8;
+    }
+
+    #successMessage {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 15px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Registration Form</h2>
+    <form id="registrationForm" novalidate>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+      <div class="error" id="nameError">Full Name is required.</div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      <div class="error" id="emailError">Please enter a valid email address.</div>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required minlength="6">
+      <div class="error" id="passwordError">Password must be at least 6 characters and include one special character.</div>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+      <div class="error" id="phoneError">Phone number must be 10 digits.</div>
+
+      <button type="submit">Register</button>
+      <div id="successMessage">🎉 Registration Successful!</div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("registrationForm");
+    const nameField = document.getElementById("name");
+    const emailField = document.getElementById("email");
+    const passwordField = document.getElementById("password");
+    const phoneField = document.getElementById("phone");
+    const successMessage = document.getElementById("successMessage");
+
+    // ✅ FIXED PASSWORD REGEX HERE
+    const strongPassword = /^(?=.*[!@#$%^&])(?=.{6,})/;
+
+    // Validation functions
+    function validateName() {
+      const nameError = document.getElementById("nameError");
+      if (nameField.value.trim() === "") {
+        nameError.style.display = "block";
+        nameField.classList.add("invalid");
+        nameField.classList.remove("valid");
+        return false;
+      } else {
+        nameError.style.display = "none";
+        nameField.classList.remove("invalid");
+        nameField.classList.add("valid");
+        return true;
+      }
+    }
+
+    function validateEmail() {
+      const emailError = document.getElementById("emailError");
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailField.value.trim())) {
+        emailError.style.display = "block";
+        emailField.classList.add("invalid");
+        emailField.classList.remove("valid");
+        return false;
+      } else {
+        emailError.style.display = "none";
+        emailField.classList.remove("invalid");
+        emailField.classList.add("valid");
+        return true;
+      }
+    }
+
+    function validatePassword() {
+      const passwordError = document.getElementById("passwordError");
+      const passwordValue = passwordField.value.trim();
+      if (!strongPassword.test(passwordValue)) {
+        passwordError.style.display = "block";
+        passwordField.classList.add("invalid");
+        passwordField.classList.remove("valid");
+        return false;
+      } else {
+        passwordError.style.display = "none";
+        passwordField.classList.remove("invalid");
+        passwordField.classList.add("valid");
+        return true;
+      }
+    }
+
+    function validatePhone() {
+      const phoneError = document.getElementById("phoneError");
+      const phoneRegex = /^[0-9]{10}$/;
+      if (!phoneRegex.test(phoneField.value.trim())) {
+        phoneError.style.display = "block";
+        phoneField.classList.add("invalid");
+        phoneField.classList.remove("valid");
+        return false;
+      } else {
+        phoneError.style.display = "none";
+        phoneField.classList.remove("invalid");
+        phoneField.classList.add("valid");
+        return true;
+      }
+    }
+
+    // Real-time validation
+    nameField.addEventListener("input", validateName);
+    emailField.addEventListener("input", validateEmail);
+    passwordField.addEventListener("input", validatePassword);
+    phoneField.addEventListener("input", validatePhone);
+
+    // Form submission
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const isNameValid = validateName();
+      const isEmailValid = validateEmail();
+      const isPasswordValid = validatePassword();
+      const isPhoneValid = validatePhone();
+
+      if (isNameValid && isEmailValid && isPasswordValid && isPhoneValid) {
+        successMessage.style.display = "block";
+        form.reset();
+
+        nameField.classList.remove("valid");
+        emailField.classList.remove("valid");
+        passwordField.classList.remove("valid");
+        phoneField.classList.remove("valid");
+      } else {
+        successMessage.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>
